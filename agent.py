@@ -40,6 +40,6 @@ class Agent:
         print("===============")
 
 if __name__ == "__main__":
-    # Instantiatin the agent and then startin the workflow
+    # Instantiatin the agent and after that startin the workflow
     study_agent = Agent()
     study_agent.run()
