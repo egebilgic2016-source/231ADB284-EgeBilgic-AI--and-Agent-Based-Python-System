@@ -58,5 +58,32 @@ The system is designed as a command-line tool and in order to operate and run it
 **4. Short explanation of data conversion or porting:**
 Data conversion happens when interacting with the Wikipedia API. The API returns back data in very structured JSON format, which includs a lot of unnecessary metadata after that `WikipediaTool` receives this JSON, parses it into a Python dictionary, isolates the specific `"extract"` key which holds the plain text and after that converts/ports it into a clean, raw string format. This ensures the main Agent only receives the exact text it needs to display to the user, maintaining data consistency
 
+---
+
+## Final Submission (Submitted: May 16)
+
+**1. Final version of this system description and its actual cleargoal:**
+Firstly this AI Study Assistant is now a ully functional command-line Python application and its actual and main goal is to automate the initial phase of academic research and to be honest it successfully takes a user-defined complex topic, autonomously queries an external knowledge base, and returns a concise, factual summary directly to the terminal very extremely fas. 
+
+**2. Final explanation of programming concepts and their usage:**
+* **Object-Oriented Programming (OOP):** I just directly used it to structure the code logically. Additionally `WikipediaTool` handles external communication, while the `Agent` manages the application lifecycle and user interaction all at the same timing.
+* **API Integration & HTTP Requests:** The `requests` library is used to perform GET requests to the Wikipedia REST API
+* **JSON Parsing:** Used to extract the `"extract"` text field from API's JSON response payload
+* **Error Handling:** `try/except` blocks ensure that network failures or missin pages do not crash the application, providin user friendly type of error messages instead
+* **Unit Testing:** Python's `unittest` framework is used in order to clearly validate the tool's behavior under both normal and edgecase type of conditions
+
+**3. Final description of tools and their role in the system:**
+primary tool integrated into this system is  **Wikipedia API Search Tool** and clearly its role is extremely quite critical since it acts as the agent's bridge to the outside world, allowing it to retrieve real-time, factual data based on dynamic user input. 
+
+**4. Final testing results and conclusions:**
+The testing phase was completed successfully usin the `test_agent.py` script and then the functional test (`test_valid_search`) passed, proved that the tool correctly fetches and parses valid JSON data and also  error handling test (`test_invalid_search`) also passed, confirmin that invalid inputs return a safe error string instead of a system crash. 
+Conclusion: The system is quite stable consistent, error-resistant, and ready for actual real world usage.
+
+**5. Final deployment preparation description:**
+The system is prepared for local deployment ans then i have just added  `requirements.txt` file to the repository because of the rrason that a  new user simply needs to clone the repository, run `pip install -r requirements.txt` in order to install dependencies, and then start the assistant by runnin `python agent.py` in their own specific terminal
+
+**6. Short explanation of the chosen deployment strategy:**
+The most suitable deployment strategy for this solution is a **Command-Line Tool** by far because it is very lightweight and exactly designed for quick research tasks, deploying it as a local CLI application is highly efficient so users can so easily run it in their terminal without needing a heavy web server or interface.
+
 **4. Description of how tools are integrated into the system:**
 The Wikipedia search tool is fully integrated as an independent module and when the user provides a topic, then  main agent script instantiates the `WikipediaTool` class and calls its `search(topic)` method becase this method builds the correct URL parameters, makes the API request, extracts the plain text summary from the JSON response, and returns it to the main agent to process into the further steps.
