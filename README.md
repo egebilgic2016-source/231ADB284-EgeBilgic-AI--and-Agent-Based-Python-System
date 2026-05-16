@@ -38,7 +38,25 @@ The "AI Study Assistant" is currently in the active implementation phase dear si
 * **OOP:** Sir,firstly i just created a `WikipediaTool` class which encapsulates the search logic  and also an `Agent` class that manages the overall flow because it helps so much to keep the code very clean and modular way
 * **API Integration:** The `requests.get()` function is used to send HTTP requests directly to  Wikipedia API endpoints in a very secure way.
 * **JSON Parsin:** The external API returns data in JSON format and code parses this into Python dictionaries to extract just the relevant summary text, ignorin unnecessary metadata.
-* **Exception Handlin:** `try/except` blocks are placed around the API calls in order to successfully prevent the program from crashin if there is no internet connection or if the search topic returns no results erro.
+* **Exception Handlin:** `try/except` blocks are placed around the API calls in order to successfully prevent the program from crashin if there is no internet connection or if the search topic returns no results error.
+
+
+---
+
+## Step 3 (Submitted: May 15)
+
+**1. Description of the testin process:**
+Testin is performed using Python's built-in `unittest` framework and thetesting process focuses fully on verifying core functionality of the `WikipediaTool` in order to ensure it correctly interacts with the external API and also can handle successful responses, and aditionally safely manages errors without crashin the main application at all.
+
+**2. List and explanation of test scenarios:**
+* **Test Scenario 1: Valid Topic Search (Functional Testin):** Tests if the tool correctly fetches and returns a summary when a valid topic (e.g., "Python_(programming_language)") is provided and then xpected result: A string containing the summary text.
+* **Test Scenario 2: Invalid/Non-existent Topic (Error Handlin):** Tests how system behaves when the user inputs gibberish or a non-existent Wikipedia page and also expected result: The system catches the HTTP error and returns a safe error message string rather than crashin.
+
+**3. Short explanation of deployment preparation (how the system can be run):**
+The system is designed as a command-line tool and in order to operate and run it,  user needs Python installed at first and user also nneds to have required external dependencies such as the `requests` library will be listed in a `requirements.txt` file and so user will simply install the dependencies using `pip install -r requirements.txt` and then launch the program just y typin `python agent.py` in their own specific terminal
+
+**4. Short explanation of data conversion or porting:**
+Data conversion happens when interacting with the Wikipedia API. The API returns back data in very structured JSON format, which includs a lot of unnecessary metadata after that `WikipediaTool` receives this JSON, parses it into a Python dictionary, isolates the specific `"extract"` key which holds the plain text and after that converts/ports it into a clean, raw string format. This ensures the main Agent only receives the exact text it needs to display to the user, maintaining data consistency
 
 **4. Description of how tools are integrated into the system:**
 The Wikipedia search tool is fully integrated as an independent module and when the user provides a topic, then  main agent script instantiates the `WikipediaTool` class and calls its `search(topic)` method becase this method builds the correct URL parameters, makes the API request, extracts the plain text summary from the JSON response, and returns it to the main agent to process into the further steps.
